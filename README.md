@@ -146,6 +146,7 @@ echo "options uvcvideo quirks=0x100" > /etc/modprobe.d/uvcvideo.conf
 
 
 ## References
+- https://github.com/leifliddy/macbook12-bluetooth-driver
 - https://gist.github.com/almas/5f75adb61bccf604b6572f763ce63e3e
 - https://gist.github.com/rob-hills/9134b7352ee7471c4d4f4fbd6454c4b9
 - https://gist.github.com/roadrunner2/1289542a748d9a104e7baec6a92f9cd7
