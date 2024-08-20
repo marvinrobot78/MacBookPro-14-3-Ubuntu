@@ -7,6 +7,7 @@ Everything except the Bluetooth, TouchID (Fingerprint), Suspend and Hibernation 
 **The MacBook's EFI partition must be kept.** 
 Please see the following comment for more information.
 https://gist.github.com/roadrunner2/1289542a748d9a104e7baec6a92f9cd7?permalink_comment_id=4937505#gistcomment-4937505
+
 If you have deleted the EFI partition you can reboot and use Option + Command + R to do an Internet Recovery to MacOS Ventura.  This will restore the EFI partition and then you can re-install Ubuntu.
 
 ## Out of the Box
