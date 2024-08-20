@@ -18,17 +18,17 @@ If you have deleted the EFI partition you can reboot and use Option + Command + 
 
 ### What didn't work
 - Wifi: It was partly functional, but was not fully usable. Only 2.4Ghz access points shown with poor level and can be connected;
-- Bluetooth;
 - Touchbar;
 - Sound;
 - Camera.
 
 ### What still doesn't work
+- Bluetooth - this should work with this patch https://github.com/leifliddy/macbook12-bluetooth-driver however that is broken with the 6.8.0 kernel, see: https://github.com/leifliddy/macbook12-bluetooth-driver/issues/24
 - Suspend (Can not resume many hardware);
   2016 version seems to work with following method: https://ubuntuforums.org/showthread.php?t=2492426
   But, 2017 version seems doesn't work.
 - Hibernation (When I execute `systemctl hibernate`, it seems shutting down);
-- TouchID (It seems diffucult. There might be a possibility. Please see this: https://github.com/Dunedan/mbp-2016-linux/issues/71#issuecomment-528545490);
+- TouchID (It seems difficult, but there might be a possibility. See: https://github.com/Dunedan/mbp-2016-linux/issues/71#issuecomment-528545490);
 
 The following notes mostly document what worked to get Wifi, Touchbar, Camera, and Sound working.
 
@@ -72,9 +72,7 @@ Test the drivers by loading them and their dependencies
 ```
 modprobe intel_lpss_pci spi_pxa2xx_platform applespi apple-ib-tb
 ```
-An empty output indicates success
-
-Reboot
+An empty output indicates success.  Reboot.
 
 At this point of the process, my touchbar was not working.  More Googling led me to someone else logging this as [an issue on RoadRunner2's Driver repository[(https://github.com/roadrunner2/macbook12-spi-driver/issues/42] and in the discussion I found a workaround.  The following commands:
 ```
@@ -103,15 +101,10 @@ TimeoutSec=0
 WantedBy=multi-user.target
 EOF
 ```
-
 Now enable with `systemctl enable macbook-quirks.service` and reboot to check.
 
-My MBP now boots up with the Touchbar working!
-
-From the discussion in the link above, it appears this may be due to a bug in Linux and the usbmuxd system so hopefully will be able to remove the workaround in the future, so keep an eye on the [relevant issue discussion](https://github.com/roadrunner2/macbook12-spi-driver/issues/42).
-
 #### Touchbar Tweaking (Optional)
-Personally, I don't like this. But, if you want the Function keys to appear by default (instead of the brightness and sound keys), then you need to pass some parameters to the apple_ib_tb module. 
+If you want the Function keys to appear by default (instead of the brightness and sound keys), then you need to pass some parameters to the apple_ib_tb module. 
 'modinfo apple_ib_tb' lists the parameters and what they do.
 ```
 sudo su
@@ -128,9 +121,6 @@ sudo modprobe apple_ib_tb
 ```
 
 ### Sound
-I found the resolution from the Rade0nFighter's answer from the following QA:
-https://askubuntu.com/questions/1475091/sound-macbook-pro-ubuntu-22-04
-
 ```
 sudo su
 
@@ -147,15 +137,12 @@ apt install linux-source-XXXXX
 
 reboot
 ```
-Now the sound should work.
 
 
 ### Camera
-Execute the following command and reboot.
 ```
 echo "options uvcvideo quirks=0x100" > /etc/modprobe.d/uvcvideo.conf
 ```
-Now the camera should work too.
 
 
 ## References
