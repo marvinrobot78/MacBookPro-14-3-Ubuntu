@@ -58,7 +58,7 @@ EOF
 
 Build and install drivers from the source code.
 ```
-apt install dkms
+apt install dkms git
 
 cd {your preferred source download folder}
 git clone https://github.com/almas/macbook12-spi-driver
