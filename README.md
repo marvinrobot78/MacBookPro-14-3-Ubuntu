@@ -3,8 +3,11 @@ Notes to install Ubuntu 24.04LTS on my 2017 MacBook Pro 15 inch (MacBookPro14,3)
 
 Now everything except the Bluetooth, TouchID (Fingerprint), Suspend and Hibernation seems to work for me.
 
-## Sources
-- [Rob Hills's original Gist] - https://gist.github.com/rob-hills/9134b7352ee7471c4d4f4fbd6454c4b9 - very helpful
+## Pre-requirement
+**The MacBook's EFI partition must be kept.** 
+Please see the following comment for more information.
+https://gist.github.com/roadrunner2/1289542a748d9a104e7baec6a92f9cd7?permalink_comment_id=4937505#gistcomment-4937505
+If you have deleted the EFI partition you can reboot and use Option + Command + R to do an Internet Recovery to MacOS Ventura.  This will restore the EFI partition and then you can re-install Ubuntu.
 
 ## Out of the Box
 
@@ -29,27 +32,10 @@ Now everything except the Bluetooth, TouchID (Fingerprint), Suspend and Hibernat
 
 The following notes mostly document what worked to get Wifi, Touchbar, Camera, and Sound working.
 
-## Pre-requirement
-**The MacBook's EFI partition must be kept.** Please see the following comment for more information.
-https://gist.github.com/roadrunner2/1289542a748d9a104e7baec6a92f9cd7?permalink_comment_id=4937505#gistcomment-4937505
-If you have deleted the EFI partition you can reboot and use Option + Command + R to do an Internet Recovery to MacOS Ventura.  This will restore the EFI partition and then you can re-install Ubuntu.
-
 ## Resolution
 
 ### WiFi
-Just creating the configuration file `/usr/lib/firmware/brcm/brcmfmac43602-pcie.txt` was enough for my hardware.
-
-[*Andy Holst's* example configuration file final iteration here](https://bugzilla.kernel.org/show_bug.cgi?id=193121#c74) was ideal and only required a little tweaking for my system.
-
-#### WiFi Driver Configuration tweaks
-I made the following changes to Andy Holst's `/usr/lib/firmware/brcm/brcmfmac43602-pcie.txt`
-```
-macaddr=00:90:4c:0d:f5:30
-ccode=ALL
-```
-
-- *macaddr* - set to the mac address of my WiFi card (I got it with the command `ip addr`)
-- *ccode* - I just simply set it to ALL, (ALL (Channel 1-14), US, EU etc.)
+Copy https://github.com/marvinrobot78/MacBookPro-14-3-Ubuntu/blob/main/brcmfmac43602-pcie.txt to /lib/firmware/brcm/ and reboot.
 
 ### Touchbar
 
@@ -173,6 +159,7 @@ Now the camera should work too.
 
 
 ## References
+- https://gist.github.com/almas/5f75adb61bccf604b6572f763ce63e3e
 - https://gist.github.com/rob-hills/9134b7352ee7471c4d4f4fbd6454c4b9
 - https://gist.github.com/roadrunner2/1289542a748d9a104e7baec6a92f9cd7
 - https://github.com/Dunedan/mbp-2016-linux
