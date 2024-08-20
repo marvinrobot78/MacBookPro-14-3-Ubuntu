@@ -7,7 +7,7 @@ devid=0x43ba
 
 macaddr=00:90:4c:0d:f4:3e
 
-ccode=ALL
+ccode=AU
 regrev=245
 
 boardflags=0x10401001
