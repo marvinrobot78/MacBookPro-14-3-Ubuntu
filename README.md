@@ -1,7 +1,7 @@
 # Summary
 Notes to install Ubuntu 24.04LTS on my 2017 MacBook Pro 15 inch (MacBookPro14,3).
 
-Now everything except the Bluetooth, TouchID (Fingerprint), Suspend and Hibernation seems to work for me.
+Everything except the Bluetooth, TouchID (Fingerprint), Suspend and Hibernation are working.
 
 ## Pre-requirement
 **The MacBook's EFI partition must be kept.** 
