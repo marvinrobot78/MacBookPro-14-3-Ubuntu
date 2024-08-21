@@ -42,12 +42,12 @@ Copy https://github.com/marvinrobot78/MacBookPro-14-3-Ubuntu/blob/main/brcmfmac4
 
 #### Step-by-Step Touchbar
 Become the superuser
-```
+```bash
 sudo su
 ```
 
 Ubuntu uses initramfs so add our new modules to the list to be loaded
-```
+```bash
 cat <<EOF | tee -a /etc/initramfs-tools/modules
 # drivers for keyboard+touchpad
 applespi
@@ -58,7 +58,7 @@ EOF
 ```
 
 Build and install drivers from the source code.
-```
+```bash
 apt install dkms git
 
 cd {your preferred source download folder}
@@ -70,20 +70,19 @@ dkms install applespi/0.1
 ```
 
 Test the drivers by loading them and their dependencies
-```
+```bash
 modprobe intel_lpss_pci spi_pxa2xx_platform applespi apple-ib-tb
 ```
 An empty output indicates success.  Reboot.
 
-At this point of the process, my touchbar was not working.  More Googling led me to someone else logging this as [an issue on RoadRunner2's Driver repository[(https://github.com/roadrunner2/macbook12-spi-driver/issues/42] and in the discussion I found a workaround.  The following commands:
-```
+To get the touchbar to light up:
+```bash
 echo '1-3' | sudo tee /sys/bus/usb/drivers/usb/unbind
 echo '1-3' | sudo tee /sys/bus/usb/drivers/usb/bind
 ```
-caused my touchbar to light up!!
 
-To save having to run these commands each time I start the computer, I needed to create a "macbook-quirks.service" and have it start up with the computer:
-```
+Create a "macbook-quirks.service" and have it start up with the computer:
+```bash
 sudo su
 cat <<EOF | tee /etc/systemd/system/macbook-quirks.service
 [Unit]
@@ -107,7 +106,7 @@ Now enable with `systemctl enable macbook-quirks.service` and reboot to check.
 #### Touchbar Tweaking (Optional)
 If you want the Function keys to appear by default (instead of the brightness and sound keys), then you need to pass some parameters to the apple_ib_tb module. 
 'modinfo apple_ib_tb' lists the parameters and what they do.
-```
+```bash
 sudo su
 cat <<EOF | tee /etc/modprobe.d/apple_ib_tb.conf
 options apple_ib_tb fnmode=2           # Default to Function Keys, Fn key toggles to "special"
@@ -116,13 +115,46 @@ EOF
 ```
 
 After reloading the module with the following command, the Function keys will be shown by default.
-```
+```bash
 sudo modprobe -r apple_ib_tb
 sudo modprobe apple_ib_tb
 ```
+### Adjust Trackpad Sensitivity
+
+Make file
+
+```bash
+sudo nano /usr/share/libinput/local-overrides.quirks
+```
+
+Add content:
+
+```bash
+[MacBook(Pro) SPI Touchpads]
+MatchName=*Apple SPI Touchpad*
+ModelAppleTouchpad=1
+AttrTouchSizeRange=200:150
+AttrPalmSizeThreshold=1100
+
+[MacBook(Pro) SPI Keyboards]
+MatchName=*Apple SPI Keyboard*
+AttrKeyboardIntegration=internal
+
+[MacBookPro Touchbar]
+MatchBus=usb
+MatchVendor=0x05AC
+MatchProduct=0x8600
+AttrKeyboardIntegration=internal
+```
+
+Register the file
+
+```bash
+sudo systemd-hwdb update
+```
 
 ### Sound
-```
+```bash
 sudo su
 
 apt install wget make gcc linux-headers-generic
@@ -141,7 +173,7 @@ reboot
 
 
 ### Camera
-```
+```bash
 echo "options uvcvideo quirks=0x100" > /etc/modprobe.d/uvcvideo.conf
 ```
 
