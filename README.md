@@ -177,6 +177,22 @@ reboot
 echo "options uvcvideo quirks=0x100" > /etc/modprobe.d/uvcvideo.conf
 ```
 
+## Keyboard Shortcuts
+If you switch regularly beween MacOS and Linux it is nice to harmonise the keyboard shortcuts - in particular the use of the Command key.
+(Assuming you are using Wayland) this is an excellent script: https://github.com/petrstepanov/gnome-macos-remap-wayland
+
+1. Make sure you are running **Wayland** display server. Logout from your session. On the GNOME login screen click ⚙ icon on the bottom right. Select `GNOME` (defaults to Wayland). Log in.
+2. Check out this repository run `install.sh` script in Terminal. Script will ask for administrator password.
+```bash
+sudo apt install gnome-shell-extensions
+cd ~/Downloads
+git clone https://github.com/petrstepanov/gnome-macos-remap-wayland
+cd gnome-macos-remap-wayland
+chmod +x ./install.sh
+./install.sh
+```
+3. Install and enable [this GNOME extension](https://extensions.gnome.org/extension/5060/xremap/).
+4. Restart your computer.
 
 ## References
 - https://github.com/leifliddy/macbook12-bluetooth-driver
@@ -184,3 +200,5 @@ echo "options uvcvideo quirks=0x100" > /etc/modprobe.d/uvcvideo.conf
 - https://gist.github.com/rob-hills/9134b7352ee7471c4d4f4fbd6454c4b9
 - https://gist.github.com/roadrunner2/1289542a748d9a104e7baec6a92f9cd7
 - https://github.com/Dunedan/mbp-2016-linux
+- https://github.com/Cliffback/POP_OS_22.04-mbp-2016
+- https://github.com/petrstepanov/gnome-macos-remap-wayland
