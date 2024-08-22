@@ -17,7 +17,7 @@ If you have deleted the EFI partition you can reboot and use Option + Command + 
 - The touchpad;
 - USB-C for important infrastructure such as LAN connection, external monitor, and external storage.
 
-### What didn't work
+### What didn't work at first
 - Wifi: It was partly functional, but was not fully usable. Only 2.4Ghz access points shown with poor level and can be connected;
 - Touchbar;
 - Sound;
@@ -28,8 +28,8 @@ If you have deleted the EFI partition you can reboot and use Option + Command + 
 - Suspend (Can not resume many hardware);
   2016 version seems to work with following method: https://ubuntuforums.org/showthread.php?t=2492426
   But, 2017 version seems doesn't work.
-- Hibernation (When I execute `systemctl hibernate`, it seems shutting down);
-- TouchID (It seems difficult, but there might be a possibility. See: https://github.com/Dunedan/mbp-2016-linux/issues/71#issuecomment-528545490);
+- Hibernation (When I execute `systemctl hibernate`, it seems to shut down);
+- TouchID.
 
 The following notes mostly document what worked to get Wifi, Touchbar, Camera, and Sound working.
 
