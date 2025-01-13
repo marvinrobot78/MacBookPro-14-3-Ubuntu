@@ -19,14 +19,14 @@ If you have deleted the EFI partition you can reboot and use Option + Command + 
 - Bluetooth - although I had to use Blueman to add devices: https://github.com/blueman-project/blueman
 
 ### What didn't work at first
-- Wifi: It was partly functional, but was not fully usable. Only 2.4Ghz access points shown with poor level and can be connected;
+- Wifi: It was partly functional, but was not fully usable. Only 2.4Ghz access points shown with poor level;
 - Touchbar;
 - Sound;
 - Camera.
 
 ### What still doesn't work
-- Suspend 
-- Hibernation 
+- Suspend;
+- Hibernation;
 - TouchID.
 
 The following notes mostly document what worked to get Wifi, Touchbar, Camera, and Sound working.
