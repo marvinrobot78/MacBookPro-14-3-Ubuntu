@@ -16,6 +16,7 @@ If you have deleted the EFI partition you can reboot and use Option + Command + 
 - The basic keyboard (not the Touchbar with Esc and Function keys though); 
 - The touchpad;
 - USB-C for important infrastructure such as LAN connection, external monitor, and external storage.
+- Bluetooth - although I had to use Blueman to add devices: https://github.com/blueman-project/blueman
 
 ### What didn't work at first
 - Wifi: It was partly functional, but was not fully usable. Only 2.4Ghz access points shown with poor level and can be connected;
@@ -24,11 +25,8 @@ If you have deleted the EFI partition you can reboot and use Option + Command + 
 - Camera.
 
 ### What still doesn't work
-- Bluetooth - this should work with this patch https://github.com/leifliddy/macbook12-bluetooth-driver however that is broken with the 6.8.0 kernel, see: https://github.com/leifliddy/macbook12-bluetooth-driver/issues/24
-- Suspend (Can not resume many hardware);
-  2016 version seems to work with following method: https://ubuntuforums.org/showthread.php?t=2492426
-  But, 2017 version seems doesn't work.
-- Hibernation (When I execute `systemctl hibernate`, it seems to shut down);
+- Suspend 
+- Hibernation 
 - TouchID.
 
 The following notes mostly document what worked to get Wifi, Touchbar, Camera, and Sound working.
